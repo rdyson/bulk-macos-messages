@@ -31,3 +31,9 @@ It's not currently possible on iOS or macOS to send an SMS message or Apple Mess
 * SMS has a limit of 160 characters, whereas Messages can handle ~20k characters. This script does not enforce character limits.
 * The `message` can't contain straight double quotes (" ")—use curly quotes instead (“ ”). Other special characters may cause issues.
 * If sending to one recipient fails, the script will exit. Be sure to remove recipients who have been sent the message successfully before running the script again, to avoid sending duplicate messages.
+
+## References
+
+* https://alvinalexander.com/apple/applescript-for-loop-while-loop-examples
+* https://hints.macworld.com/article.php?story=20050523140439734
+* https://stackoverflow.com/questions/9574089/osx-bash-watch-command
