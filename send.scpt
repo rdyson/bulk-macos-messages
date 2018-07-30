@@ -17,4 +17,3 @@ tell application "Messages"
     end repeat
 
 end tell
-end run
