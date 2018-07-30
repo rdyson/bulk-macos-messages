@@ -1,2 +1,2 @@
-recipients="1234567890"
+recipients="1234567890 19876543210"
 message="Testing"
