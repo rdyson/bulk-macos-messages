@@ -14,6 +14,7 @@ tell application "Messages"
     repeat with recipient in words of recipients
     	set recipient to buddy recipient of targetService
         send message to recipient
+	delay 1
     end repeat
 
 end tell
