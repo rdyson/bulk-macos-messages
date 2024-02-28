@@ -1,27 +1,35 @@
+
 # Bulk macOS Messages
 
 It's not currently possible on iOS or macOS to send an SMS message or Apple Message to multiple people individually (as opposed to a group) without creating a new message for each person. This script automates that process on macOS.
 
 ## How it works
 
-`send.scpt` is an AppleScript that reads environment variables `recipients` and `message`. It then loops over the list of recipients and tells the Messages app to send the message to each recipient. After looping over the list it renames `sms.txt` to `sms-${current_date}.txt` and creates a blank `sms.txt`.
+This simple script takes a plain-text formatted message and a list of recipients, and sends the message to each recipient individually. It uses the Messages app on macOS to send the messages.
+
+Here's how to use it:
+
+```shell
+osascript send.applescript ./message.txt ./recipients.txt
+```
+
+`send.applesript` is an AppleScript that reads the list of `recipients` and the sending `message`. It then loops over the list of recipients and tells the Messages app to send the message to each recipient. After looping over the list it renames `sms.txt` to `sms-${current_date}.txt` and creates a blank `sms.txt`.
 
 `sms.txt` is where the `recipients` phone numbers and the `message` text are defined.
 
-`send.sh` starts a `tail` process that watches `sms.txt` for changes. If there is text in the file, it attempts to set environment variables for `recipients` and `message`, and then starts the `send.scpt` AppleScript. 
+`send.sh` starts a `tail` process that watches `sms.txt` for changes. If there is text in the file, it attempts to set environment variables for `recipients` and `message`, and then starts the `send.scpt` AppleScript.
 
 ## Pre-requisites
 
-* A computer running macOS and an iCloud an account. Tested on macOS 10.13 High Sierra.
-* Enable [SMS Forwarding](https://support.apple.com/en-us/HT204681#SMS)  if you want to send to non-iOS recipients.
-
+* A computer running macOS and an iCloud an account. Tested on macOS 13.6 Ventura.
+* Enable [SMS Forwarding](https://support.apple.com/en-us/HT204681#SMS) if you want to send to non-iOS recipients.
 
 ## Setup
 
 1. Clone this repository and replace the contents of `sms.txt` with your recipients list and message text.
 1. Update `send.sh` line 4 with the directory where your `sms.txt` file will live. For example, you can point to a Dropbox folder to facilitate triggering a send from your phone or any computer by editing this file.
 1. Make the script executable by running `chmod +x send.sh`.
-1. Run `./send.sh` in a Terminal window. 
+1. Run `./send.sh` in a Terminal window.
 1. Verify that the messages were sent by checking the Messages app on your Mac or on an iOS device.
 
 ## Notes
